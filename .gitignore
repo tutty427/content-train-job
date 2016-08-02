@@ -34,3 +34,6 @@ Thumbs.db
 # *.tar
 # *.tar.gz
 /bin/
+
+*.zip
+*.pdf
