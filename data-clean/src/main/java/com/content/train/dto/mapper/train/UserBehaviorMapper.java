@@ -1,6 +1,9 @@
 package com.content.train.dto.mapper.train;
 
 import com.content.train.dto.train.UserBehavior;
+import com.content.train.vo.UserBehaviorVo;
+
+import java.util.List;
 
 public interface UserBehaviorMapper {
     /**
@@ -50,4 +53,7 @@ public interface UserBehaviorMapper {
      * @mbggenerated Tue Aug 02 17:37:27 CST 2016
      */
     int updateByPrimaryKey(UserBehavior record);
+
+
+    List<UserBehaviorVo> selectAllEffectiveBehaviorVo();
 }

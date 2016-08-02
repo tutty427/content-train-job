@@ -11,7 +11,7 @@
 
     <context:property-placeholder location="classpath:config/jdbc.properties"/>
 
-    <bean id="skyTempleDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <bean id="trainDataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}" />
         <property name="url" value="${jdbc.url}" />
@@ -19,9 +19,9 @@
         <property name="password" value="${jdbc.password}" />
     </bean>
 
-    <bean id="skyTempleSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="skyTempleDataSource" />
-        <property name="mapperLocations" value="classpath*:config/sqlmapper/skytemple/*.xml" />
+    <bean id="trainSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="trainDataSource" />
+        <property name="mapperLocations" value="classpath*:config/sqlmapper/train/*.xml" />
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
@@ -36,23 +36,23 @@
         </property>
     </bean>
 
-    <bean id="skyTempleTransactionManager"
+    <bean id="trainTransactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="skyTempleDataSource" />
+        <property name="dataSource" ref="trainDataSource" />
     </bean>
 
-    <bean id="skyTempleSqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-        <constructor-arg index="0" ref="skyTempleSqlSessionFactory" />
+    <bean id="trainSqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg index="0" ref="trainSqlSessionFactory" />
         <constructor-arg index="1" value="BATCH" />
     </bean>
 
-    <bean id="skyTempleMapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.skytemple.shaw.mapper.skytemple" />
-        <property name="sqlSessionTemplateBeanName" value="skyTempleSqlSession"/>
+    <bean id="trainMapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.content.train.dto.mapper.train" />
+        <property name="sqlSessionTemplateBeanName" value="trainSqlSession"/>
     </bean>
 
     <!-- 开启事务注解驱动 -->
-    <tx:annotation-driven transaction-manager="skyTempleTransactionManager"/>
+    <tx:annotation-driven transaction-manager="trainTransactionManager"/>
 
 
 

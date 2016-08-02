@@ -1,6 +1,7 @@
 package com.content.train.dto.train;
 
 import java.util.Date;
+import lombok.Data;
 
 public class BaiduJoke {
     /**

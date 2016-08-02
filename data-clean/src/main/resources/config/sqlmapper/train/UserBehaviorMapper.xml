@@ -24,6 +24,11 @@
     <result column="latitude" property="latitude" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="SimpleVoResultMap" type="com.content.train.vo.UserBehaviorVo" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="behavior_type" property="behaviorType" jdbcType="VARCHAR" />
+    <result column="behavior_content" property="behaviorContent" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbggenerated
@@ -33,6 +38,12 @@
     id, creator, modifier, create_time, modify_time, is_deleted, user_id, behavior_time, 
     behavior_type, behavior_content, device_id, isp, network, longitude, latitude, remark
   </sql>
+
+  <sql id="Simple_VO_Column_List" >
+    user_id,behavior_type, behavior_content
+  </sql>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -260,4 +271,17 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+
+  <select id="selectAllEffectiveBehaviorVo" resultMap="SimpleVoResultMap">
+    select
+    <include refid="Simple_VO_Column_List" />
+    from yxtk_user_behavior
+    where is_deleted = 'n'
+  </select>
+
+
+
+
 </mapper>

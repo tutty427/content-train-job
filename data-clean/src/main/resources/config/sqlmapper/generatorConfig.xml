@@ -19,26 +19,29 @@
         </javaClientGenerator>
 
 
-        <table schema="" tableName="3rd_baidu_api_joke" domainObjectName="BaiduJoke" enableCountByExample="false" enableUpdateByExample="false"
+        <!--<table schema="" tableName="3rd_baidu_api_joke" domainObjectName="BaiduJoke" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table schema="" tableName="3rd_chanyouji" domainObjectName="ChanYouJi" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table schema="" tableName="3rd_miaopai_video" domainObjectName="MiaoPaiVideo" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table schema="" tableName="3rd_smzdm" domainObjectName="SmZdm" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table schema="" tableName="yxtk_user_behavior" domainObjectName="UserBehavior" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <table schema="" tableName="content_user_count" domainObjectName="ContentUserCount" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
-
-        <table schema="" tableName="3rd_chanyouji" domainObjectName="ChanYouJi" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
-
-        <table schema="" tableName="3rd_miaopai_video" domainObjectName="MiaoPaiVideo" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
-
-        <table schema="" tableName="3rd_smzdm" domainObjectName="SmZdm" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
-
-        <table schema="" tableName="yxtk_user_behavior" domainObjectName="UserBehavior" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
-
 
 
     </context>

@@ -19,7 +19,7 @@
     </appender>
 
 
-    <logger name="com.skytemple" additivity="false">
+    <logger name="com.content" additivity="false">
         <level value="ERROR"/>
     </logger>
 
@@ -48,7 +48,7 @@
     </logger>
 
 
-    <logger name="com.skytemple.shaw" additivity="false">
+    <logger name="com.content.train" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="fileAppender" />
