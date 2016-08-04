@@ -16,6 +16,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
@@ -168,6 +174,12 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ik-analyser</groupId>
+            <artifactId>ik-analyser-2012FF-u1</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

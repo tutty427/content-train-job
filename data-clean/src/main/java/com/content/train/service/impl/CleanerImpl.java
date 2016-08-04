@@ -1,7 +1,7 @@
 package com.content.train.service.impl;
 
-import com.content.train.dto.mapper.train.ContentUserCountMapper;
 import com.content.train.dto.train.ContentUserCount;
+import com.content.train.dto.train.ItemSimiScore;
 import com.content.train.enums.BehaviorType;
 import com.content.train.service.BaseService;
 import com.content.train.service.Cleaner;
@@ -18,6 +18,7 @@ import java.util.*;
 
 /**
  * Created by shawxy on 8/2/16.
+ * 数据清洗，算法测试
  */
 public class CleanerImpl extends BaseService implements Cleaner {
 
@@ -28,33 +29,12 @@ public class CleanerImpl extends BaseService implements Cleaner {
 
     @Test
     public void test(){
-        init();
-        System.out.println(itemPositiveUserIdMap.size());
-        System.out.println(itemNegativeUserIdMap.size());
-
-
-        Iterator iterator = itemPositiveUserIdMap.entrySet().iterator();
-        while(iterator.hasNext()) {
-            Map.Entry<String,Set<Integer>> entry = (Map.Entry<String,Set<Integer>>) iterator.next();
-            String key = entry.getKey();
-
-            Set<Integer> ngUserIdSet = itemNegativeUserIdMap.get(key);
-            if(CollectionUtils.isEmpty(ngUserIdSet)){
-                continue;
-            }
-
-            Set<Integer> posUserIdSet = entry.getValue();
-            posUserIdSet.removeAll(ngUserIdSet);
-            itemPositiveUserIdMap.put(key,posUserIdSet);
-        }
-
-
-        storeToDB();
-
+        makeReverseDataTable();
     }
 
 
 
+    //加载样本数据
     private void init(){
 
 
@@ -128,6 +108,92 @@ public class CleanerImpl extends BaseService implements Cleaner {
     }
 
 
+    public void makeReverseDataTable() {
 
 
+        init();
+        System.out.println(itemPositiveUserIdMap.size());
+        System.out.println(itemNegativeUserIdMap.size());
+
+
+        Iterator iterator = itemPositiveUserIdMap.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<String,Set<Integer>> entry = (Map.Entry<String,Set<Integer>>) iterator.next();
+            String key = entry.getKey();
+
+            Set<Integer> ngUserIdSet = itemNegativeUserIdMap.get(key);
+            if(CollectionUtils.isEmpty(ngUserIdSet)){
+                continue;
+            }
+
+            Set<Integer> posUserIdSet = entry.getValue();
+            posUserIdSet.removeAll(ngUserIdSet);
+            itemPositiveUserIdMap.put(key, posUserIdSet);
+        }
+
+
+        storeToDB();
+
+    }
+
+    @Test
+    public void calculateSimiScore() {
+
+        Date now = new Date();
+
+        List<ContentUserCount> all = contentUserCountMapper.getAll();
+        for(int i = 0 ; i < all.size(); i++){
+
+            ContentUserCount contentUserCount = all.get(i);
+
+            for(int j = all.size()-1 ; j > i ; j--){
+
+                double score = doCalaulate(contentUserCount, all.get(j));
+                if(score == 0){
+                    continue;
+                }
+
+                ItemSimiScore itemSimiScore = new ItemSimiScore();
+                itemSimiScore.setAddDate(now);
+                itemSimiScore.setItemId(contentUserCount.getBehaviorContent());
+                itemSimiScore.setTargetItemId(all.get(j).getBehaviorContent());
+                itemSimiScore.setScore(Double.valueOf(score));
+                itemSimiScoreMapper.insert(itemSimiScore);
+
+
+            }
+        }
+    }
+
+
+
+
+    private double doCalaulate(ContentUserCount a , ContentUserCount b){
+
+        List<Double> aList =  new Gson().fromJson(a.getUserIdJson(),ArrayList.class);
+        List<Double> bList =  new Gson().fromJson(b.getUserIdJson(),ArrayList.class);
+
+        //2个样本当且仅当被同一个用户关注过，相似度不可靠，返回0
+        if(aList.size() == 1 && bList.size() == 1){
+            if(aList.get(0).equals(bList.get(0))){
+                return 0;
+            }
+        }
+
+
+        int intersection = 0;
+        for(Double userId : aList){
+
+            if(bList.contains(userId)){
+                intersection++;
+            }else{
+                bList.add(userId);
+            }
+
+        }
+
+        //需要降低活跃用户对相似度计算的影响 todo
+        double score = (double)intersection/Math.sqrt(aList.size() * bList.size());
+        return score;
+    }
 }

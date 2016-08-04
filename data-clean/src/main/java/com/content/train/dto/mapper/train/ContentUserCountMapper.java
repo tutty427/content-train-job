@@ -65,4 +65,6 @@ public interface ContentUserCountMapper {
 
     int insertBatch(@Param("data") List<ContentUserCount> record);
 
+    List<ContentUserCount> getAll();
+
 }

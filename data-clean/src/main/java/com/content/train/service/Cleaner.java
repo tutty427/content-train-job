@@ -6,5 +6,11 @@ package com.content.train.service;
 public interface Cleaner {
 
 
+     void makeReverseDataTable();
+
+
+     void calculateSimiScore();
+
+
 
 }

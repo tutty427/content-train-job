@@ -9,13 +9,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public abstract class BaseService {
 
-    public BaiduJokeMapper baiduJokeMapper;
-    public ChanYouJiMapper chanYouJiMapper;
-    public MiaoPaiVideoMapper miaoPaiVideoMapper;
-    public SmZdmMapper smZdmMapper;
-    public UserBehaviorMapper userBehaviorMapper;
-    public ContentUserCountMapper contentUserCountMapper;
-
+    protected BaiduJokeMapper baiduJokeMapper;
+    protected ChanYouJiMapper chanYouJiMapper;
+    protected MiaoPaiVideoMapper miaoPaiVideoMapper;
+    protected SmZdmMapper smZdmMapper;
+    protected UserBehaviorMapper userBehaviorMapper;
+    protected ContentUserCountMapper contentUserCountMapper;
+    protected ItemSimiScoreMapper itemSimiScoreMapper;
 
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("config/spring/applicationContext_connection.xml");
@@ -25,6 +25,7 @@ public abstract class BaseService {
         smZdmMapper = (SmZdmMapper)context.getBean("smZdmMapper");
         userBehaviorMapper = (UserBehaviorMapper)context.getBean("userBehaviorMapper");
         contentUserCountMapper = (ContentUserCountMapper)context.getBean("contentUserCountMapper");
+        itemSimiScoreMapper = (ItemSimiScoreMapper)context.getBean("itemSimiScoreMapper");
 
     }
 

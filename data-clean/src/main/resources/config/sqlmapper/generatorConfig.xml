@@ -39,9 +39,14 @@
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <table schema="" tableName="content_user_count" domainObjectName="ContentUserCount" enableCountByExample="false" enableUpdateByExample="false"
+        <!--<table schema="" tableName="content_user_count" domainObjectName="ContentUserCount" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <table schema="" tableName="item_simi_score" domainObjectName="ItemSimiScore" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
+
 
 
     </context>
