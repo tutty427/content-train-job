@@ -403,4 +403,20 @@
       recommend_flag = #{recommendFlag,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="getMaxId" resultType="int" >
+
+    select
+    max(id)
+    from 3rd_chanyouji
+  </select>
+
+  <select id="selectByRange" resultMap="BaseResultMap" >
+
+    select
+    id,title
+    from 3rd_chanyouji
+    where id > #{id} limit #{pageSize}
+  </select>
 </mapper>

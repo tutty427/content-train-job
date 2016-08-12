@@ -47,6 +47,12 @@
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
 
+        <table schema="" tableName="title_simi_score" domainObjectName="TitleSimiScore" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+
+
+
 
 
     </context>

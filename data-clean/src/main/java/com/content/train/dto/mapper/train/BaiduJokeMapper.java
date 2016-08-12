@@ -1,6 +1,9 @@
 package com.content.train.dto.mapper.train;
 
 import com.content.train.dto.train.BaiduJoke;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BaiduJokeMapper {
     /**
@@ -50,4 +53,8 @@ public interface BaiduJokeMapper {
      * @mbggenerated Tue Aug 02 17:37:27 CST 2016
      */
     int updateByPrimaryKey(BaiduJoke record);
+
+    int getMaxId();
+
+    List<BaiduJoke> selectByRange(@Param("id")int firstId , @Param("pageSize")int pageSize);
 }

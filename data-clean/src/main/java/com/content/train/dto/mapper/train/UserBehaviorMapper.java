@@ -2,6 +2,7 @@ package com.content.train.dto.mapper.train;
 
 import com.content.train.dto.train.UserBehavior;
 import com.content.train.vo.UserBehaviorVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -55,5 +56,5 @@ public interface UserBehaviorMapper {
     int updateByPrimaryKey(UserBehavior record);
 
 
-    List<UserBehaviorVo> selectAllEffectiveBehaviorVo();
+    List<UserBehaviorVo> selectAllEffectiveBehaviorVo(@Param("maxId") Integer maxId, @Param("pageSize") Integer pageSize);
 }

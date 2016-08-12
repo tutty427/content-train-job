@@ -16,6 +16,7 @@ public abstract class BaseService {
     protected UserBehaviorMapper userBehaviorMapper;
     protected ContentUserCountMapper contentUserCountMapper;
     protected ItemSimiScoreMapper itemSimiScoreMapper;
+    protected TitleSimiScoreMapper titleSimiScoreMapper;
 
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("config/spring/applicationContext_connection.xml");
@@ -26,6 +27,7 @@ public abstract class BaseService {
         userBehaviorMapper = (UserBehaviorMapper)context.getBean("userBehaviorMapper");
         contentUserCountMapper = (ContentUserCountMapper)context.getBean("contentUserCountMapper");
         itemSimiScoreMapper = (ItemSimiScoreMapper)context.getBean("itemSimiScoreMapper");
+        titleSimiScoreMapper = (TitleSimiScoreMapper)context.getBean("titleSimiScoreMapper");
 
     }
 

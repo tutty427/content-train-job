@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class UserBehaviorVo {
 
+
+    private Integer id;
     private Integer userId;
     private String behaviorContent;
     private String behaviorType;

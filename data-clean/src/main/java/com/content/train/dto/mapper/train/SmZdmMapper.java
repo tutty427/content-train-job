@@ -1,6 +1,9 @@
 package com.content.train.dto.mapper.train;
 
 import com.content.train.dto.train.SmZdm;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SmZdmMapper {
     /**
@@ -58,4 +61,8 @@ public interface SmZdmMapper {
      * @mbggenerated Tue Aug 02 17:37:27 CST 2016
      */
     int updateByPrimaryKey(SmZdm record);
+
+    int getMaxId();
+
+    List<SmZdm> selectByRange(@Param("id")int firstId , @Param("pageSize")int pageSize);
 }

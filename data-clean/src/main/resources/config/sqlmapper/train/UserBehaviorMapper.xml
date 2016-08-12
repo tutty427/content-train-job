@@ -25,6 +25,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="SimpleVoResultMap" type="com.content.train.vo.UserBehaviorVo" >
+    <result column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="behavior_type" property="behaviorType" jdbcType="VARCHAR" />
     <result column="behavior_content" property="behaviorContent" jdbcType="VARCHAR" />
@@ -40,7 +41,7 @@
   </sql>
 
   <sql id="Simple_VO_Column_List" >
-    user_id,behavior_type, behavior_content
+    id,user_id,behavior_type, behavior_content
   </sql>
 
 
@@ -278,7 +279,10 @@
     select
     <include refid="Simple_VO_Column_List" />
     from yxtk_user_behavior
-    where is_deleted = 'n'
+    where is_deleted = 'n'  and id > #{maxId}
+    and (behavior_content like 'joke_baidu_%' or behavior_content like 'video_miaopai_%'  or behavior_content like 'news_trip_%' or behavior_content like 'news_shop_%')
+    order by id asc
+    limit #{pageSize}
   </select>
 
 
